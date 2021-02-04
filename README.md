@@ -61,3 +61,29 @@ LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 ```
+
+- 安装django代码补全插件
+```
+pip install pylint_django
+```
+
+- 出现了问题：OperationalError: no such table: main.auth_user__old
+参考博客 ：https://blog.csdn.net/weixin_44649870/article/details/89450706
+```
+pip install Django==2.1.5
+```
+- 我以为升级到2.1.5就可以了，他那时python3.7，我的是3.8，升到2.1.5不可以，我就直接升级到最新
+```
+pip install Django --upgrade
+# 还是不行
+```
+- 然后我把sqlite3和migrations删除了
+```
+python3 manage.py  makemigrations
+python3 manage.py  migrate
+# 创建超级用户
+# 错误：no such table
+# 我重复迁移文件，结果还是不行
+# 然后我指定具体的app，创建成功了
+python3 manage.py  makemigrations app01
+```
